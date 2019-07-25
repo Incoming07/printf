@@ -6,7 +6,7 @@
 /*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 18:24:11 by bglover           #+#    #+#             */
-/*   Updated: 2019/07/18 20:51:09 by bglover          ###   ########.fr       */
+/*   Updated: 2019/07/25 15:32:46 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,39 @@ int		ft_printf(const char *restrict format, ...)
 {
 	va_list ap;
 	int		i;
-	int		a;
-	char	*b;
 
 	i = 0;
 	va_start(ap, format);
-	while (*format)
+	while (format[i])
 	{
-		if (format[i] == ' ')
-			write(1, &format[i++], 1);
-		else
+		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == 'd')
-			{
-				a = va_arg(ap, int);
-				ft_putnbr(a);
-			}
+				ft_putnbr(va_arg(ap, int));//нужен лонг инт
 			if (format[i] == 'c')
-			{
-				a = va_arg(ap, int);
-				ft_putchar(a);
-			}
+				ft_putchar(va_arg(ap, int));
 			if (format[i] == 's')
-			{
-				b = va_arg(ap, char *);
-				ft_putstr(b);
-			}
+				ft_putstr(va_arg(ap, char *));
+			if (format[i] == '%')
+				write(1, &format[i], 1);
+			i++;
 		}
+		else
+			write(1, &format[i++], 1);
 	}
 	return (0);
 }
 
 int		main(void)
 {
-	ft_printf("%d %c %s", 10, 'a', "abc");
-	printf("%d", 10);
+//	int		a = 1;
+//	char	*b = "abc";
+
+//	ft_printf("%d", a);
+//	ft_printf("%s", b);
+	ft_printf("%0d%d%d%d%d",	1, -2, 3, -4, 5);
+	write(1, "\n", 1);
+	printf("%d%d%d%d%d", 1, -2, 3, -4, 5);
 	return (0);
 }
