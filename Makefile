@@ -6,7 +6,7 @@
 #    By: bglover <bglover@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/20 16:00:15 by bglover           #+#    #+#              #
-#    Updated: 2019/07/22 18:56:30 by bglover          ###   ########.fr        #
+#    Updated: 2019/09/22 18:18:18 by bglover          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ NAME_O = $(NAME:.c=.o)
 	
 all: 
 #	gcc -g $(NAME) write_fgr.c -o main.1  -L. libft.a
-	gcc -g $(NAME) -o ft_printf -L. ../GNL/libft/libft.a
+	
+#	gcc -g $(NAME) -o ft_printf -L. libft/libftprintf.a
+	gcc -g ft_print_float.c -L. libft/libft.a
 clean:
 	$(RM) $(NAME_O)
 

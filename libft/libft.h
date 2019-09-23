@@ -6,7 +6,7 @@
 /*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 17:10:50 by bglover           #+#    #+#             */
-/*   Updated: 2019/07/22 18:29:00 by bglover          ###   ########.fr       */
+/*   Updated: 2019/09/23 18:55:15 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <stddef.h>
 # include <string.h>
 # include <unistd.h>
+
+union union_1
+{
+	long double		i;
+	short			c[5];
+};
 
 typedef	struct		s_list
 {
@@ -83,5 +89,10 @@ void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *list, void (f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int 				*ft_long_math_substraction(int *a, int *b, int acc);
+int					*ft_long_math_summ(int *a, int *b, int acc);
+int					*ft_long_math_divider(int *num, int *div, int accuracy, int zero);
+int					*ft_long_math_squad(int squad, int acc);
+int					*ft_intstr(int size);
 
 #endif

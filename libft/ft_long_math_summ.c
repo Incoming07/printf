@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_long_math_summ.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/04 15:49:02 by bglover           #+#    #+#             */
-/*   Updated: 2019/08/29 19:30:03 by bglover          ###   ########.fr       */
+/*   Created: 2019/08/17 18:13:42 by bglover           #+#    #+#             */
+/*   Updated: 2019/09/20 19:03:19 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+int	*ft_long_math_summ(int *a, int *b, int acc)
 {
-	t_list *temp;
+	int *rez;
+	int i;
+	int j;
 
-	if (!alst)
-		return ;
-	if (!del)
-		return ;
-	while (*alst)
+	i = acc - 1;
+	j = acc - 1;
+	rez = ft_intstr(acc);
+	while (i != -1)
 	{
-		del((*alst)->content, (*alst)->content_size);
-		temp = (*alst)->next;
-		free(*alst);
-		(*alst)->content = NULL;
-		*alst = temp;
+		rez[i] += a[j] + b[j];
+		while (rez[i] >= 10)
+		{
+			rez[i - 1] = rez[i] / 10;
+			rez[i] = rez[i] % 10;
+		}
+		i--;
+		j--;
 	}
+	return (rez);
 }

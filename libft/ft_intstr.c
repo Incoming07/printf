@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_intstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/04 15:49:02 by bglover           #+#    #+#             */
-/*   Updated: 2019/08/29 19:30:03 by bglover          ###   ########.fr       */
+/*   Created: 2019/08/30 18:07:26 by bglover           #+#    #+#             */
+/*   Updated: 2019/09/20 18:38:34 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+int	*ft_intstr(int size)
 {
-	t_list *temp;
+	int	*str;
+	int i;
 
-	if (!alst)
-		return ;
-	if (!del)
-		return ;
-	while (*alst)
-	{
-		del((*alst)->content, (*alst)->content_size);
-		temp = (*alst)->next;
-		free(*alst);
-		(*alst)->content = NULL;
-		*alst = temp;
-	}
+	i = -1;
+	if (!size)
+		return (0);
+	str = malloc(sizeof(int) * size);
+	if (!str)
+		return (NULL);
+	while (++i < size)
+		str[i] = 0;
+	return (str);
 }
